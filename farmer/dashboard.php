@@ -4,7 +4,6 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
-$names="Aime Didier";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +31,7 @@ $names="Aime Didier";
   <?php require 'php-includes/nav.php';?>
       <!-- End Navbar -->
       <div class="content">
-        
+
       </div>
     </div>
   </div>

@@ -1,3 +1,6 @@
+<?php
+$names="Aime Didier";
+?>
 <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
