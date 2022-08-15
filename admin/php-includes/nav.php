@@ -1,5 +1,5 @@
 <?php
-$query = "SELECT * FROM farmer WHERE email= ? limit 1";
+$query = "SELECT * FROM admin WHERE email= ? limit 1";
 $stmt = $db->prepare($query);
 $stmt->execute(array($_SESSION['email']));
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,21 +28,15 @@ if ($stmt->rowCount()>0) {
             </a>
           </li>
           <li>
-            <a href="store.php">
-              <i class="nc-icon nc-cart-simple"></i>
-              <p>Store</p>
+            <a href="farmers.php">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Farmers</p>
             </a>
           </li>
           <li>
             <a href="help.php">
               <i class="nc-icon nc-chat-33"></i>
               <p>Help</p>
-            </a>
-          </li>
-          <li>
-            <a href="sales.php">
-              <i class="nc-icon nc-paper"></i>
-              <p>Sales</p>
             </a>
           </li>
           <li>
