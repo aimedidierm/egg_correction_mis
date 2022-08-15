@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Egg correction</title>
+	<title>PHP Simple Chat System using AJAX</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -31,14 +32,7 @@
 		<div style="height: 15px;"></div>
 		<div style="color: red; font-size: 15px;">
 			<center>
-			<?php
-				session_start();
-				if(isset($_SESSION['msg'])){
-					echo $_SESSION['msg'];
-					unset($_SESSION['msg']);
-				}
-			?>
-			</center>
+						</center>
 		</div>
 	</div>
 </div>
