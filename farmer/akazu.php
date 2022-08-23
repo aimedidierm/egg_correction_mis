@@ -10,40 +10,7 @@ $stmt->execute(array($_SESSION['email']));
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($stmt->rowCount()>0) {
     $farmer=$rows['id'];
-    $totaleggs=$rows['eggs'];
 }
-if(isset($_POST['add'])){
-  echo $amount=$_POST['egg'];
-  echo $newbalance=$totaleggs+$amount;
-      $sql ="UPDATE farmer SET eggs = ? WHERE email = ? limit 1";
-      $stm = $db->prepare($sql);
-      if ($stm->execute(array($newbalance, $_SESSION['email']))) {
-          $sql ="INSERT INTO eggs (farmer, debit, total) VALUES (?,?,?)";
-          $stm = $db->prepare($sql);
-          $stm->execute(array($farmer,$amount,$newbalance));
-          print "<script>alert('Eggs added');window.location.assign('store.php')</script>";
-  
-      } else{
-      echo "<script>alert('Fail');window.location.assign('store.php')</script>";
-  }
-}
-if(isset($_POST['remove'])){
-    $amount=$_POST['eggs'];
-    $newbalance=$totaleggs-$amount;
-    if ($amount <= $totaleggs){
-        $sql ="UPDATE farmer SET eggs = ? WHERE email = ? limit 1";
-        $stm = $db->prepare($sql);
-        if ($stm->execute(array($newbalance, $_SESSION['email']))) {
-            $sql ="INSERT INTO eggs (farmer,credit,total) VALUES (?,?,?)";
-            $stm = $db->prepare($sql);
-            $stm->execute(array($farmer,$amount,$newbalance));
-            print "<script>alert('Eggs removed');window.location.assign('store.php')</script>";
-    
-        }
-    } else{
-        echo "<script>alert('You have low number');window.location.assign('store.php')</script>";
-    }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,51 +38,10 @@ if(isset($_POST['remove'])){
 <?php require 'php-includes/nav.php';?>
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
-            <h3>Total: <b><?php echo $totaleggs ;?></b> Eggs</h3>
-          <div class="row">
-            <div class="card card-user">
-              <div class="card-body">
-                <form method="post">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Enter number</label>
-                        <input type="number" class="form-control" name="egg">
-                    <div class="update ml-auto mr-auto">
-                      <button type="submit" name="add" class="btn btn-primary btn-round">add eggs</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="card card-user">
-              <div class="card-body">
-                <form method="post">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Enter number</label>
-                        <input type="number" class="form-control" name="eggs">
-                    <div class="update ml-auto mr-auto">
-                      <button type="submit" name="remove" class="btn btn-primary btn-round">remove eggs</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
         <div class="col-md-12">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title">Store management</h4>
+                <h4 class="card-title">Eggs in akazu</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -143,7 +69,7 @@ if(isset($_POST['remove'])){
                     if ($stmt->rowCount()>0) {
                         $id=$rows['id'];
                     }
-                    $sql = "SELECT * FROM eggs WHERE farmer=?";
+                    $sql = "SELECT * FROM akazu WHERE farmer=?";
                     $stmt = $db->prepare($sql);
                     $stmt->execute(array($id));
                     if ($stmt->rowCount() > 0) {

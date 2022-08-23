@@ -34,6 +34,12 @@ if ($stmt->rowCount()>0) {
             </a>
           </li>
           <li>
+            <a href="akazu.php">
+              <i class="nc-icon nc-bank"></i>
+              <p>Akazu</p>
+            </a>
+          </li>
+          <li>
             <a href="help.php">
               <i class="nc-icon nc-chat-33"></i>
               <p>Help</p>
@@ -72,7 +78,7 @@ if ($stmt->rowCount()>0) {
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Egg correction</a>
+            <a class="navbar-brand" href="javascript:;">Akazu system</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
