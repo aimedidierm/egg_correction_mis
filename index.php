@@ -1,7 +1,6 @@
 <?php
 /**
  * Chat
- * Buy now
  * Login make pop up
  * Search a user
  * Statistics

@@ -4,6 +4,11 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
+$query = "SELECT * FROM farmer WHERE email= ? limit 1";
+$stmt = $db->prepare($query);
+$stmt->execute(array($_SESSION['email']));
+$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+$myid=$rows['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +46,7 @@ require 'php-includes/check-login.php';
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Names
+                        Namess
                       </th>
                       <th>
                         Email
@@ -60,9 +65,9 @@ require 'php-includes/check-login.php';
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * FROM buyers_mess";
+                    $sql = "SELECT * FROM buyers_mess WHERE farmer=?";
                     $stmt = $db->prepare($sql);
-                    $stmt->execute();
+                    $stmt->execute(array($myid));
                     if ($stmt->rowCount() > 0) {
                         $count = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

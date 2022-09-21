@@ -4,6 +4,10 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
+$find=null;
+if(isset($_POST['search'])){
+$find="%{$_POST['product']}%";
+}
 if(isset($_POST['save'])){
   $names=$_POST['names'];
   $email=$_POST['email'];
@@ -49,6 +53,18 @@ if(isset($_POST['save'])){
                 <h4 class="card-title">Technician management</h4>
               </div>
               <div class="card-body">
+              <form name="search" method="post" action="tec.php">
+                <div class="input-group no-border">
+                  <input type="text" name="product" value="" class="form-control" placeholder="Search...">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                    <button class="btn btn-facebook btn-block" type="submit" name="search">
+                      <i class="nc-icon nc-zoom-split"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
@@ -69,9 +85,9 @@ if(isset($_POST['save'])){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * FROM tec";
+                    $sql = "SELECT * FROM tec  where names like ?";
                     $stmt = $db->prepare($sql);
-                    $stmt->execute();
+                    $stmt->execute(array($find));
                     if ($stmt->rowCount() > 0) {
                         $count = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
