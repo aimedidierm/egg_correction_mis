@@ -4,7 +4,7 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
-$find=null;
+$find="%{ }%";
 if(isset($_POST['search'])){
 $find="%{$_POST['product']}%";
 }

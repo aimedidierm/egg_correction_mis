@@ -4,18 +4,11 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
-$query = "SELECT * FROM farmer WHERE email= ? limit 1";
-$stmt = $db->prepare($query);
-$stmt->execute(array($_SESSION['email']));
-$rows = $stmt->fetch(PDO::FETCH_ASSOC);
-if ($stmt->rowCount()>0) {
-    $farmer=$rows['id'];
-}
 if(isset($_POST['send'])){
   $messege=$_POST['messege'];
-  $sql ="INSERT INTO help (send,mess,farmer,admin) VALUES ('1',?,?,'1')";
+  $sql ="INSERT INTO help (send,mess,farmer,admin) VALUES ('0',?,'1','1')";
   $stm = $db->prepare($sql);
-  if ($stm->execute(array($messege,$farmer))) {
+  if ($stm->execute(array($messege))) {
     }
   }
 ?>
@@ -48,19 +41,19 @@ if(isset($_POST['send'])){
         <div class="col-md-12">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title">Eggs in akazu</h4>
+                <h4 class="card-title">Send a messege</h4>
               </div>
               <div class="card-body">
                 <?php
-                $sql = "SELECT * FROM help WHERE farmer=? AND send = '0' ORDER BY id ASC";
+                $sql = "SELECT * FROM help WHERE send = '1' ORDER BY id ASC";
                 $stmt = $db->prepare($sql);
-                $stmt->execute(array($farmer));
+                $stmt->execute();
                 if ($stmt->rowCount() > 0) {
                     $count = 1;
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <div class="typography-line">
-                  <p><span>Admin <br><?php echo $row['time']?></span>
+                  <p><span>Farmer <br><?php echo $row['time']?></span>
                 <?php echo $row['mess']?>
                   </p>
                 </div>
@@ -68,9 +61,9 @@ if(isset($_POST['send'])){
                     $count++;
                 }
                 }
-                $sql = "SELECT * FROM help WHERE farmer=? AND send = '1' ORDER BY id ASC";
+                $sql = "SELECT * FROM help WHERE send = '0' ORDER BY id ASC";
                 $stmt = $db->prepare($sql);
-                $stmt->execute(array($farmer));
+                $stmt->execute();
                 if ($stmt->rowCount() > 0) {
                     $count = 1;
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
