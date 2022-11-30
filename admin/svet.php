@@ -4,18 +4,22 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
+$find=null;
+if(isset($_POST['search'])){
+$find="%{$_POST['product']}%";
+}
 if(isset($_POST['save'])){
   $names=$_POST['names'];
   $email=$_POST['email'];
   $phone=$_POST['phone'];
   $address=$_POST['address'];
-  $sql ="INSERT INTO tec (email,names,phone,address) VALUES (?,?,?,?)";
+  $sql ="INSERT INTO vet (email,names,phone,address) VALUES (?,?,?,?)";
   $stm = $db->prepare($sql);
   if ($stm->execute(array($email,$names,$phone,$address))) {
-      print "<script>alert('Technician added');window.location.assign('tec.php')</script>";
+      print "<script>alert('Veterinarian added');window.location.assign('vet.php')</script>";
 
   } else{
-      echo "<script>alert('Error! try again');window.location.assign('tec.php')</script>";
+      echo "<script>alert('Error! try again');window.location.assign('vet.php')</script>";
 }
 }
 ?>
@@ -28,7 +32,7 @@ if(isset($_POST['save'])){
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Egg correction - Technician
+    Egg correction - Veterinarian
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -46,10 +50,10 @@ if(isset($_POST['save'])){
       <div class="content">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title">Technician management</h4>
+                <h4 class="card-title">Veterinarian management</h4>
               </div>
               <div class="card-body">
-              <form name="search" method="post" action="stec.php">
+              <form name="search" method="post" action="svet.php">
                 <div class="input-group no-border">
                   <input type="text" name="product" value="" class="form-control" placeholder="Search...">
                   <div class="input-group-append">
@@ -81,9 +85,9 @@ if(isset($_POST['save'])){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * FROM tec";
+                    $sql = "SELECT * FROM vet  where names like ?";
                     $stmt = $db->prepare($sql);
-                    $stmt->execute();
+                    $stmt->execute(array($find));
                     if ($stmt->rowCount() > 0) {
                         $count = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -110,13 +114,13 @@ if(isset($_POST['save'])){
                         }
                     }
                     if(isset($_POST['delete'])){
-                        $sql ="DELETE FROM tec WHERE id = ?";
+                        $sql ="DELETE FROM vet WHERE id = ?";
                         $stm = $db->prepare($sql);
                         if ($stm->execute(array($sid))) {
-                            print "<script>alert('Technician deleted');window.location.assign('tec.php')</script>";
+                            print "<script>alert('Veterinarian deleted');window.location.assign('vet.php')</script>";
                 
                         } else {
-                            print "<script>alert('Fail');window.location.assign('tec.php')</script>";
+                            print "<script>alert('Fail');window.location.assign('vet.php')</script>";
                         }
                     }
                     ?>
@@ -130,7 +134,7 @@ if(isset($_POST['save'])){
           <div class="row">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Add new technician</h5>
+                <h5 class="card-title">Add new veterinarian</h5>
               </div>
               <div class="card-body">
               <form method="post">
@@ -154,7 +158,7 @@ if(isset($_POST['save'])){
             <span class="input-group-addon" style="width:150px;">Address:</span>
             <input type="text" style="width:350px;" class="form-control" name="address">
         </div>
-        <button type="submit" class="btn btn-facebook btn-block" name="save">Add Technician</button>
+        <button type="submit" class="btn btn-facebook btn-block" name="save">Add Veterinarian</button>
         </div>
         </form>
               </div>

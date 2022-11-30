@@ -22,14 +22,14 @@ demo = {
       type: 'line',
 
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [{
             borderColor: "#6bd098",
             backgroundColor: "#6bd098",
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
+            data: [300, 310, 316, 322, 330, 326, 333]
           },
           {
             borderColor: "#f17e5d",
@@ -37,7 +37,7 @@ demo = {
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
+            data: [320, 340, 365, 360, 370, 385, 390]
           },
           {
             borderColor: "#fcc468",
@@ -45,7 +45,7 @@ demo = {
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+            data: [370, 394, 415, 409, 425, 445, 460]
           }
         ]
       },
@@ -103,30 +103,14 @@ demo = {
       type: 'line',
 
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [{
             borderColor: "#6bd098",
             backgroundColor: "#6bd098",
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-          },
-          {
-            borderColor: "#f17e5d",
-            backgroundColor: "#f17e5d",
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-          },
-          {
-            borderColor: "#fcc468",
-            backgroundColor: "#fcc468",
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+            data: [300, 310, 316, 322, 330, 326, 333]
           }
         ]
       },
@@ -252,6 +236,7 @@ demo = {
       pointHoverRadius: 4,
       pointBorderWidth: 8,
     };
+
 
     var dataSecond = {
       data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],

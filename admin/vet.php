@@ -4,10 +4,6 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
-$find=null;
-if(isset($_POST['search'])){
-$find="%{$_POST['product']}%";
-}
 if(isset($_POST['save'])){
   $names=$_POST['names'];
   $email=$_POST['email'];
@@ -53,7 +49,7 @@ if(isset($_POST['save'])){
                 <h4 class="card-title">Veterinarian management</h4>
               </div>
               <div class="card-body">
-              <form name="search" method="post" action="vet.php">
+              <form name="search" method="post" action="svet.php">
                 <div class="input-group no-border">
                   <input type="text" name="product" value="" class="form-control" placeholder="Search...">
                   <div class="input-group-append">
@@ -85,9 +81,9 @@ if(isset($_POST['save'])){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * FROM vet  where names like ?";
+                    $sql = "SELECT * FROM vet";
                     $stmt = $db->prepare($sql);
-                    $stmt->execute(array($find));
+                    $stmt->execute();
                     if ($stmt->rowCount() > 0) {
                         $count = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

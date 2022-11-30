@@ -185,7 +185,7 @@ if(isset($_POST['buy'])){
     </div>
     <!-- Featured End -->
     <?php 
-    $sql = "SELECT * FROM farmer";
+    $sql = "SELECT f.id,f.names,f.eggs,f.address,k.farmer,k.total FROM farmer AS f JOIN akazu AS k ON f.id=k.farmer";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {
@@ -204,7 +204,10 @@ if(isset($_POST['buy'])){
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href=""><?php echo $row['names'];?></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5><?php echo $row['eggs'];?> Eggs</h5></h6>
+                            <h5><?php echo $row['eggs'];?> Eggs on sale</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5><?php echo $row['total'];?> Eggs rest in stock</h5>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                         <a class="btn btn-danger" href="buy.php?far=<?php echo $row["id"];?>">Order</a>

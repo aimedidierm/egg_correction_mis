@@ -4,18 +4,23 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
+$find="%{ }%";
+if(isset($_POST['search'])){
+$find="%{$_POST['product']}%";
+}
 if(isset($_POST['save'])){
   $names=$_POST['names'];
   $email=$_POST['email'];
   $phone=$_POST['phone'];
   $address=$_POST['address'];
-  $sql ="INSERT INTO tec (email,names,phone,address) VALUES (?,?,?,?)";
+  $password=md5($_POST['password']);
+  $sql ="INSERT INTO farmer (email,names,phone,address,eggs,password) VALUES (?,?,?,?,'0',?)";
   $stm = $db->prepare($sql);
-  if ($stm->execute(array($email,$names,$phone,$address))) {
-      print "<script>alert('Technician added');window.location.assign('tec.php')</script>";
+  if ($stm->execute(array($email,$names,$phone,$address,$password))) {
+      print "<script>alert('Farmer added');window.location.assign('farmers.php')</script>";
 
   } else{
-      echo "<script>alert('Error! try again');window.location.assign('tec.php')</script>";
+      echo "<script>alert('Error! try again');window.location.assign('farmers.php')</script>";
 }
 }
 ?>
@@ -28,7 +33,7 @@ if(isset($_POST['save'])){
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Egg correction - Technician
+    Egg correction - store
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -46,10 +51,10 @@ if(isset($_POST['save'])){
       <div class="content">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title">Technician management</h4>
+                <h4 class="card-title">Farmers management</h4>
               </div>
               <div class="card-body">
-              <form name="search" method="post" action="stec.php">
+              <form name="search" method="post" action="sfarmers.php">
                 <div class="input-group no-border">
                   <input type="text" name="product" value="" class="form-control" placeholder="Search...">
                   <div class="input-group-append">
@@ -77,13 +82,16 @@ if(isset($_POST['save'])){
                         Address
                       </th>
                       <th>
+                        Eggs
+                      </th>
+                      <th>
                       </th>
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * FROM tec";
+                    $sql = "SELECT * FROM farmer where names like ?";
                     $stmt = $db->prepare($sql);
-                    $stmt->execute();
+                    $stmt->execute(array($find));
                     if ($stmt->rowCount() > 0) {
                         $count = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -102,6 +110,9 @@ if(isset($_POST['save'])){
                         <?php echo $row['address'];?>
                         </td>
                         <td>
+                        <?php echo $row['eggs'];?>
+                        </td>
+                        <td>
                         <form method="post"><button type="submit" class="btn btn-danger" id="<?php echo $row["id"];$sid=$row["id"]; ?>" name="delete">Delete</button></form>
                         </td>
                       </tr>
@@ -110,13 +121,13 @@ if(isset($_POST['save'])){
                         }
                     }
                     if(isset($_POST['delete'])){
-                        $sql ="DELETE FROM tec WHERE id = ?";
+                        $sql ="DELETE FROM farmer WHERE id = ?";
                         $stm = $db->prepare($sql);
                         if ($stm->execute(array($sid))) {
-                            print "<script>alert('Technician deleted');window.location.assign('tec.php')</script>";
+                            print "<script>alert('Famer deleted');window.location.assign('farmers.php')</script>";
                 
                         } else {
-                            print "<script>alert('Fail');window.location.assign('tec.php')</script>";
+                            print "<script>alert('Fail');window.location.assign('farmers.php')</script>";
                         }
                     }
                     ?>
@@ -130,7 +141,7 @@ if(isset($_POST['save'])){
           <div class="row">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Add new technician</h5>
+                <h5 class="card-title">Add new farmer</h5>
               </div>
               <div class="card-body">
               <form method="post">
@@ -154,7 +165,11 @@ if(isset($_POST['save'])){
             <span class="input-group-addon" style="width:150px;">Address:</span>
             <input type="text" style="width:350px;" class="form-control" name="address">
         </div>
-        <button type="submit" class="btn btn-facebook btn-block" name="save">Add Technician</button>
+        <div class="form-group input-group">
+            <span class="input-group-addon" style="width:150px;">Password:</span>
+            <input type="password" style="width:350px;" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-facebook btn-block" name="save">Add farmer</button>
         </div>
         </form>
               </div>
@@ -182,4 +197,5 @@ if(isset($_POST['save'])){
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
 </body>
+
 </html>
