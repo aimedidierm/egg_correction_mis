@@ -26,6 +26,15 @@ if(isset($_POST['buy'])){
         print "<script>alert('Fail');window.location.assign('index.php')</script>";
     }
 }
+$id=$_GET['far'];
+$query = "SELECT * FROM farmer WHERE id = ? limit 1";
+$stmt = $db->prepare($query);
+$stmt->execute(array($id));
+$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($stmt->rowCount()>0) {
+    $location=$rows['address'];
+    $names=$rows['names'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +109,10 @@ if(isset($_POST['buy'])){
                 <div class="contact-form bg-light p-30">
                     <div id="success"></div>
                     <form method="post">
+                        <?php
+                        echo "<h4>Names: ".$names."</h4>";
+                        echo "<h4>Farmer location: ".$location."</h4>";
+                        ?>
                         <div class="control-group">
                             <input type="text" class="form-control" id="name" name="names" placeholder="Your Name"
                                 required="required" data-validation-required-message="Please enter your name" />

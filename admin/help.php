@@ -45,6 +45,14 @@ if(isset($_POST['send'])){
               </div>
               <div class="card-body">
                 <?php
+                $query = "SELECT * FROM farmer WHERE id = 1 limit 1";
+                $stmt = $db->prepare($query);
+                $stmt->execute();
+                $rows = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($stmt->rowCount()>0) {
+                  $names=$rows['names'];
+                  $address=$rows['address'];
+                }
                 $sql = "SELECT * FROM help WHERE send = '1' ORDER BY id ASC";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
@@ -53,8 +61,12 @@ if(isset($_POST['send'])){
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <div class="typography-line">
-                  <p><span>Farmer <br><?php echo $row['time']?></span>
-                <?php echo $row['mess']?>
+                  <p>
+                    <span>Farmer <br>
+                    <?php echo $row['time'];?><br>
+                    <?php echo $names;?>
+                    <?php echo $address;?></span>
+                    <?php echo $row['mess']?>
                   </p>
                 </div>
                 <?php

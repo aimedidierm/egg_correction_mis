@@ -104,7 +104,7 @@ if(isset($_POST['buy'])){
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Amanyarwanda</h1>
                                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Fresh eggs which are "Amanyarwanda"</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="buy.php?far=1">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@ if(isset($_POST['buy'])){
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Ayamapondezi</h1>
                                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Amagi meza yamapondezi</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="buy.php?far=1">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@ if(isset($_POST['buy'])){
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Avanze</h1>
                                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Amagi yipondezi ninyarwanda bivangiye</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="buy.php?far=1">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@ if(isset($_POST['buy'])){
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase">Save 20%</h6>
                         <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <a href="buy.php?far=1" class="btn btn-primary">Shop Now</a>
                     </div>
                 </div>
                 <div class="product-offer mb-30" style="height: 200px;">
@@ -145,7 +145,7 @@ if(isset($_POST['buy'])){
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase">Save 20%</h6>
                         <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <a href="buy.php?far=1" class="btn btn-primary">Shop Now</a>
                     </div>
                 </div>
             </div>
