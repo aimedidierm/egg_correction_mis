@@ -43,7 +43,7 @@ void loop() {
   distanceCm = duration * SOUND_VELOCITY/2;
   Serial.print("Distance (cm): ");
   Serial.println(distanceCm);
-  if(distanceCm < 38){
+  if(distanceCm < 27){
       WiFiClient client;
       HTTPClient http;
       http.begin(client, serverName);
@@ -57,6 +57,7 @@ void loop() {
         Serial.println(payload);
       }
       http.end();
+      delay(2000);
     }
   delay(100);
 }
