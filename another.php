@@ -4,7 +4,7 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require 'php-includes/connect.php';
 use Yvesniyo\IntouchSms\SmsSimple;
-if(isset($_GET['egg'])){
+if(isset($_REQUEST['egg'])){
     $query = "SELECT * FROM akazu ORDER BY id DESC limit 1";
     $stmt = $db->prepare($query);
     $stmt->execute();
