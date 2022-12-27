@@ -4,6 +4,23 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 require '../php-includes/connect.php';
 require 'php-includes/check-login.php';
+$sql = "SELECT * FROM akazu ORDER BY id DESC";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$eggs=$row['total'];
+$sql = "SELECT * FROM help";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$help=$stmt->rowCount();
+$sql = "SELECT * FROM farmer";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$farmers=$stmt->rowCount();
+$sql = "SELECT * FROM buyers_mess";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$users=$stmt->rowCount();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +61,7 @@ require 'php-includes/check-login.php';
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Total eggs</p>
-                      <p class="card-title">25<p>
+                      <p class="card-title"><?php echo $eggs;?><p>
                     </div>
                   </div>
                 </div>
@@ -70,7 +87,7 @@ require 'php-includes/check-login.php';
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Help messeges</p>
-                      <p class="card-title">5<p>
+                      <p class="card-title"><?php echo $help?><p>
                     </div>
                   </div>
                 </div>
@@ -96,7 +113,7 @@ require 'php-includes/check-login.php';
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Your stores</p>
-                      <p class="card-title">23<p>
+                      <p class="card-title"><?php echo $farmers?><p>
                     </div>
                   </div>
                 </div>
@@ -122,7 +139,7 @@ require 'php-includes/check-login.php';
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Customers</p>
-                      <p class="card-title">+45K<p>
+                      <p class="card-title"><?php echo $users?><p>
                     </div>
                   </div>
                 </div>
@@ -132,25 +149,6 @@ require 'php-includes/check-login.php';
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update now
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Layed eggs</h5>
-                <p class="card-category">24 Hours performance</p>
-              </div>
-              <div class="card-body ">
-                <canvas id=chartHours width="400" height="100"></canvas>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-history"></i> Updated 3 minutes ago
                 </div>
               </div>
             </div>
