@@ -1,7 +1,7 @@
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <SoftwareSerial.h>
-SoftwareSerial sim(11, 10);
+SoftwareSerial sim(3,1);
 #define MQ2pin (A0)
 LiquidCrystal_I2C lcd(0x27,20,4);
 int _timeout;
@@ -18,23 +18,6 @@ void loop() {
     sendsms();
     delay(10000);
 }
-void sendsms(){
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Sending SMS");
-  delay(500);
-  sim.println("AT+CMGF=1");
-  delay(200);
-  sim.println("AT+CMGS=\"" + number + "\"\r");
-  delay(200);
-  String SMS = "Hello, gas leakage detected please check";
-  sim.println(SMS);
-  delay(100);
-  sim.println((char)26);
-  delay(200);
-  _buffer = _readSerial();
-  delay(2000);
-  }
 void sendsms(){
   sim.println("AT+CMGF=1");
   delay(200);
