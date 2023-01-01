@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 22, 2022 at 04:40 PM
+-- Generation Time: Jan 01, 2023 at 11:37 PM
 -- Server version: 8.0.29-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `egg_correction`
+-- Database: `akazu_system`
 --
 
 -- --------------------------------------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `names`, `phone`, `address`, `password`, `time`) VALUES
-(1, 'admin@gmail.com', 'Aime DIdier ', '0788750979', 'Huye, Rwanda', '3b081fd5426c134088a9b1466ff4c224', '2022-06-17 13:58:07');
+(1, 'admin@gmail.com', 'Rwakayiro', '0788750979', 'Huye, Rwanda', '3b081fd5426c134088a9b1466ff4c224', '2022-06-17 13:58:07');
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,26 @@ CREATE TABLE `akazu` (
 --
 
 INSERT INTO `akazu` (`id`, `farmer`, `debit`, `credit`, `total`, `time`) VALUES
-(1, 1, 10, 0, 10, '2022-08-15 13:39:45'),
-(2, 1, NULL, 1, 9, '2022-08-15 14:12:53'),
-(3, 1, NULL, 2, 7, '2022-08-15 14:14:03');
+(698, 1, 1, 0, 1, '2022-12-29 00:17:44'),
+(699, 1, 1, 0, 2, '2022-12-29 00:17:51'),
+(700, 1, 1, 0, 3, '2022-12-29 00:18:00'),
+(701, 1, 1, 0, 4, '2022-12-29 00:18:09'),
+(702, 1, 1, 0, 5, '2022-12-29 00:35:29'),
+(703, 1, 1, 0, 6, '2022-12-29 00:35:37'),
+(704, 1, 1, 0, 7, '2022-12-29 00:35:43'),
+(705, 1, 1, 0, 8, '2022-12-29 00:35:51'),
+(706, 1, 1, 0, 9, '2022-12-29 00:36:14'),
+(707, 1, 1, 0, 10, '2022-12-29 00:36:58'),
+(708, 1, 1, 0, 11, '2022-12-29 00:37:14'),
+(709, 1, 1, 0, 12, '2022-12-29 00:37:24'),
+(710, 1, 1, 0, 13, '2022-12-29 00:38:06'),
+(711, 1, 1, 0, 14, '2022-12-29 00:38:14'),
+(712, 1, 1, 0, 15, '2022-12-29 14:38:30'),
+(713, 1, 1, 0, 16, '2022-12-29 14:43:47'),
+(714, 1, 1, 0, 17, '2022-12-29 14:50:46'),
+(715, 1, 1, 0, 18, '2022-12-29 15:02:09'),
+(716, 1, 1, 0, 19, '2022-12-29 15:03:05'),
+(717, 1, 1, 0, 20, '2022-12-29 15:03:51');
 
 -- --------------------------------------------------------
 
@@ -126,7 +143,8 @@ INSERT INTO `eggs` (`id`, `farmer`, `debit`, `credit`, `total`, `time`) VALUES
 (9, 1, 1, NULL, 17, '2022-08-23 11:51:12'),
 (10, 1, 1, NULL, 19, '2022-08-23 11:52:01'),
 (11, 1, 1, NULL, 20, '2022-08-23 11:52:18'),
-(12, 1, 2, NULL, 22, '2022-08-23 11:53:52');
+(12, 1, 2, NULL, 22, '2022-08-23 11:53:52'),
+(13, 1, 1, NULL, 51, '2022-12-28 09:21:43');
 
 -- --------------------------------------------------------
 
@@ -150,7 +168,7 @@ CREATE TABLE `farmer` (
 --
 
 INSERT INTO `farmer` (`id`, `email`, `names`, `phone`, `address`, `eggs`, `password`, `time`) VALUES
-(1, 'farmer@gmail.com', 'Aime DIdier ', '0788750979', 'Huye, Rwanda', 22, '3b081fd5426c134088a9b1466ff4c224', '2022-06-17 13:58:07');
+(1, 'farmer@gmail.com', 'Joy', '0788750979', 'Huye, Rwanda', 51, '3b081fd5426c134088a9b1466ff4c224', '2022-06-17 13:58:07');
 
 -- --------------------------------------------------------
 
@@ -194,7 +212,10 @@ CREATE TABLE `help` (
 --
 
 INSERT INTO `help` (`id`, `send`, `mess`, `farmer`, `admin`, `time`) VALUES
-(6, '0', 'hello', 1, 1, '2022-09-22 12:31:37');
+(9, '0', 'hello', 1, 1, '2022-11-22 14:01:46'),
+(10, '1', 'hello', 1, 1, '2022-12-17 20:14:42'),
+(11, '0', 'hi amakuru?', 1, 1, '2022-12-27 20:18:30'),
+(12, '1', 'witwa nde?', 1, 1, '2022-12-28 09:21:25');
 
 -- --------------------------------------------------------
 
@@ -216,7 +237,7 @@ CREATE TABLE `tec` (
 --
 
 INSERT INTO `tec` (`id`, `email`, `names`, `phone`, `address`, `time`) VALUES
-(1, 'tec@gmail.com', 'Aime DIdier ', '0788750979', 'Huye, Rwanda', '2022-06-17 13:58:07');
+(1, 'tec@gmail.com', 'Joy', '0788750979', 'Huye, Rwanda', '2022-06-17 13:58:07');
 
 -- --------------------------------------------------------
 
@@ -320,19 +341,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `akazu`
 --
 ALTER TABLE `akazu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=718;
 
 --
 -- AUTO_INCREMENT for table `buyers_mess`
 --
 ALTER TABLE `buyers_mess`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `eggs`
 --
 ALTER TABLE `eggs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `farmer`
@@ -350,7 +371,7 @@ ALTER TABLE `food`
 -- AUTO_INCREMENT for table `help`
 --
 ALTER TABLE `help`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tec`
